@@ -4,6 +4,7 @@ plugins {
 	id 'java'
 }
 
+
 group = 'com.trustmeenglish'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
@@ -13,22 +14,35 @@ configurations {
 		extendsFrom annotationProcessor
 	}
 }
+ext {
+	mapstructVersion = "1.5.0.Beta2"
+}
+
+compileJava {
+	options.compilerArgs = [
+			'-Amapstruct.defaultComponentModel=spring',
+	]
+}
+
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-	//implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.5'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.liquibase:liquibase-core'
+	//implementation 'org.liquibase:liquibase-core'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+	testImplementation "org.testng:testng:6.10", "org.easytesting:fest-assert:1.4"
+	annotationProcessor "org.mapstruct:mapstruct-processor:1.5.0.Beta2"
 }
 
 test {
