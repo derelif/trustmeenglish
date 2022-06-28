@@ -17,7 +17,7 @@ public class EnWordController {
     private final EnWordMapper enWordMapper;
 
     @GetMapping(value = "/en-words/{id}")
-    public EnWordDTO sayHello(@PathVariable Long id) {
+    public EnWordDTO getEnWord(@PathVariable Long id) {
         EnWord enWord = enWordService.getEnWord(id);
         return enWordMapper.toDTO(enWord);
     }
